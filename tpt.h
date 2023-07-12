@@ -26,6 +26,7 @@
 //===========================================================================
 void tptAbcDq0(tpdtAbc_t *abc, tpdtDq0_t *dq0, tpdtfloat_t si, tpdtfloat_t co);
 void tptAbcDq0FixedPoint(tpdtAbcFixedPoint_t *abc, tpdtDq0FixedPoint_t *dq0, tpdtint_t si, tpdtint_t co);
+void tptAbcDq0FixedPointHLS(tpdtint_t abc[3], tpdtint_t dq0[3], tpdtint_t si, tpdtint_t co);
 
 void tptLineToPhase(tpdtAbcLine_t *line, tpdtAbc_t *phase);
 void tptLineToPhaseFixedPoint(tpdtAbcLineFixedPoint_t *line, tpdtAbcFixedPoint_t *phase);

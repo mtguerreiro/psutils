@@ -43,6 +43,19 @@ void tptAbcDq0FixedPoint(tpdtAbcFixedPoint_t *abc, tpdtDq0FixedPoint_t *dq0, tpd
     dq0->z	= fixedmul( fixedmathftoi(0.57735026913f), (abc->a + abc->b + abc->c));
 }
 //---------------------------------------------------------------------------
+void tptAbcDq0FixedPointHLS(tpdtint_t abc[3], tpdtint_t dq0[3], tpdtint_t si, tpdtint_t co){
+#pragma HLS INLINE
+
+	tpdtint_t alpha, beta;
+
+    alpha	= fixedmul( fixedmathftoi(0.66666666677f), ( abc[0] - fixedmul(fixedmathftoi(0.5f), (abc[1] + abc[2])) ) );
+    beta	= fixedmul( fixedmathftoi(0.57735026913f), (abc[1] - abc[2]) );
+
+    dq0[0]	= fixedmul( alpha, co) + fixedmul(beta, si);
+    dq0[1]	= fixedmul(-alpha, si) + fixedmul(beta, co);
+    dq0[2]	= fixedmul( fixedmathftoi(0.57735026913f), (abc[0] + abc[1] + abc[2]));
+}
+//---------------------------------------------------------------------------
 void tptLineToPhase(tpdtAbcLine_t *line, tpdtAbc_t *phase){
 
     phase->a = (line->ac + line->ab) / 3.0f;
